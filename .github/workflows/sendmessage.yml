@@ -7,7 +7,7 @@ on:
       - 'README.md'
       - 'imgs/**'
   schedule:
-    - cron: 30 4 * * *
+    - cron: 00 4 * * *
   watch:
     types: [started]
 
@@ -24,10 +24,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-		
-    - name: Update paper list
-      run: python generate_tables.py
+
+    - name: Execute Python file
+      run: python checkin.py
       env:
-          SCKEY: ${{ secrets.SCKEY }}
-          COOKIE: ${{ secrets.COOKIE }}
+          CORPID: ${{ secrets.CORPID }}
+          CORPSECRET: ${{ secrets.CORPSECRET }}
 
