@@ -1,5 +1,6 @@
 import time
 import requests
+import os
 
 def getToken():
     CORPID = os.environ["CORPID"]
