@@ -1,6 +1,15 @@
-name: Python application
+name: WeChat-SendMessage
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: 
+      - 'README.md'
+      - 'imgs/**'
+  schedule:
+    - cron: 30 4 * * *
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -17,18 +26,8 @@ jobs:
         python-version: 3.7
 		
     - name: Update paper list
-      run: |
-        cd paper_infos
-        python generate_tables.py
-		
-    - name: commit
-      run: |
-        git config --global user.email 1435679023@qq.com
-        git config --global user.name marsggbo
-        git add .
-        git commit -m "update" -a
-		
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: python generate_tables.py
+      env:
+          SCKEY: ${{ secrets.SCKEY }}
+          COOKIE: ${{ secrets.COOKIE }}
+
