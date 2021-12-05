@@ -20,7 +20,7 @@ jobs:
       with:
         python-version: 3.7
     - name: Install requirements
-      run: pip install requests time
+      run: pip install requests
     - name: Execute Python file
       run: python checkin.py
       env:
